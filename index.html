@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hommeldeterminatie</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, sans-serif;
+      background: #f9f9f9;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 480px;
+      width: 100%;
+      margin: 0 auto;
+      background: #fff;
+      min-height: 100vh;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 0 0 1.5em 0;
+    }
+    .question, .result {
+      text-align: center;
+      font-size: 1.25rem;
+      margin: 1.5em 1em 0.5em 1em;
+      min-height: 3em;
+    }
+    .result {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      margin: 1.5em 1em 0.5em 1em;
+      min-height: 3em;
+    }
+    .image-container {
+      width: 75vw;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+      margin: 0 auto 1em auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f3f3f3;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      background: none;
+      box-shadow: none;
+      border: none;
+    }
+    .answer-buttons, .nav-buttons {
+      display: flex;
+      gap: 0.7em;
+      justify-content: center;
+      margin: 1.5em 1em 0 1em;
+    }
+    .nav-buttons {
+      margin-top: 0.5em;
+      margin-bottom: 0;
+    }
+    .answer-buttons button, .nav-buttons button {
+      flex: 1 1 0;
+      font-size: 1.2em;
+      padding: 1em 0;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: bold;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      transition: background 0.2s;
+      margin: 0;
+      outline: none;
+    }
+    .answer-buttons .yes { background: #2ecc40; }
+    .answer-buttons .no { background: #ff4136; }
+    .nav-buttons .secondary {
+      background: #aaa;
+      color: #fff;
+      font-weight: normal;
+    }
+    @media (max-width: 600px) {
+      .container {
+        max-width: 100vw;
+        width: 100vw;
+        min-height: 100vh;
+        box-shadow: none;
+        padding: 0 0 1em 0;
+      }
+      .question, .result {
+        font-size: 1.1em;
+        margin: 1em 0.5em 0.5em 0.5em;
+      }
+      .result {
+        font-size: 2em;
+      }
+      .image-container {
+        width: 75vw;
+        max-width: 75vw;
+        aspect-ratio: 1 / 1;
+        margin: 0 auto 1em auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f3f3f3;
+        border-radius: 12px;
+        overflow: hidden;
+      }
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+        display: block;
+        background: none;
+        box-shadow: none;
+        border: none;
+      }
+      .answer-buttons, .nav-buttons {
+        margin: 1em 0.5em 0 0.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="splash" style="position:fixed;z-index:10;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;">
+    <h1 style="font-size:2em;margin-bottom:0.5em;">Welkom bij de Hommeldeterminatie</h1>
+    <p style="max-width:320px;text-align:center;margin-bottom:1.5em;">Beantwoord een paar vragen over het uiterlijk van de hommel en ontdek direct de soort. Klik op 'Start' om te beginnen.</p>
+    <button id="startBtn" style="font-size:1.2em;padding:0.8em 2em;border:none;border-radius:8px;background:#2ecc40;color:#fff;font-weight:bold;">Start</button>
+  </div>
+  <div class="container" id="main-app" style="display:none;">
+    <div class="image-container">
+      <img id="image" src="" alt="Vraag afbeelding" />
+    </div>
+    <div class="question" id="question"></div>
+    <div class="answer-buttons" id="answer-buttons"></div>
+    <div class="nav-buttons" id="nav-buttons"></div>
+  </div>
+  <script>
+    // De volledige flowchart-structuur
+    const tree = {
+      q: "Bovenkant borststuk egaal oranje/bruin behaard?",
+      img: "borststuk-oranje-bruin-vraag.jpg",
+      yes: {
+        q: "Achterlijf wit?",
+        img: "achterlijf-wit-vraag.jpg",
+        yes: { result: "Boomhommel", img: "boomhommel-resultaat.jpg" },
+        no: {
+          q: "Achterlijf of gehele achterlijf oranjerood, met duidelijke zwarte haren?",
+          img: "achterlijf-oranjerood-vraag.jpg",
+          yes: { result: "Akkerhommel (donkere vorm)", img: "akkerhommel-donker-resultaat.jpg" },
+          no: {
+            q: "Borststuk met beharing van één lengte? (Van opzij ziet het borststuk er als geschoren uit)",
+            img: "borststuk-gelijke-lengte-vraag.jpg",
+            yes: { result: "Moshommel", img: "moshommel-resultaat.jpg" },
+            no: {
+              q: "Achterlijf met bruine band aan de basis, tussen de oranje beharing?",
+              img: "achterlijf-bruine-band-vraag.jpg",
+              yes: { result: "Heidehommel", img: "Heidehommel-resultaat.jpg" },
+              no: { result: "Akkerhommel (lichte vorm)", img: "akkerhommel-licht-resultaat.jpg" }
+            }
+          }
+        }
+      },
+      no: {
+        q: "Achterlijf met (oranje)rode punt?",
+        img: "achterlijf-rode-punt-vraag.jpg",
+        yes: {
+          q: "Kop bovenop geel behaard & borststuk met minstens 1 gele band?",
+          img: "kop-geel-behaard-vraag.jpg",
+          yes: {
+            q: "Achterlijf zwart met rode punt & achterlijf kort en gelijkmatig behaard?",
+            img: "achterlijf-zwart-met-rode-punt-kort-behaard-vraag.jpg",
+            yes: { result: "Steenhommel (man)", img: "steenhommel-man-resultaat.jpg" },
+            no: { result: "Weidehommel (man)", img: "weidehommel-man-resultaat.jpg" }
+          },
+          no: {
+            q: "Kop zwart behaard & borststuk zwart, met gele band of met grijsbruine haren tussen de zwarte beharing",
+            img: "kop-zwart-behaard-borststuk-zwart-vraag.jpg",
+            yes: {
+              q: "Vleugel verdonkerd?",
+              img: "vleugel-verdonkerd-vraag.jpg",
+              yes: { result: "Rode koekoekshommel (vrouw)", img: "rode-koekoekshommel-vrouw-resultaat.jpg" },
+              no: {
+                q: "Borststuk en achterlijf geheel zwart behaard?",
+                img: "borststuk-achterlijf-zwart-behaard-vraag.jpg",
+                yes: {
+                  q: "Achterschenen met korfjesharen?",
+                  img: "achterschenen-korfjesharen-vraag.jpg",
+                  yes: { result: "Steenhommel (vrouw)", img: "steenhommel-vrouw-resultaat.jpg" },
+                  no: { result: "Grashommel", img: "grashommel-resultaat.jpg" }
+                },
+                no: {
+                  q: "Borststuk vooraan en achteraan & basis achterlijf met grijs gele haren tussen de zwarte beharing?",
+                  img: "borststuk-begin-achterlijf-gele-band-grijsbruine-haren-vraag.jpg",
+                  yes: { result: "Rode koekoekshommel (man)", img: "rode-koekoekshommel-man-resultaat.jpg" },
+                  no: { result: "Grashommel", img: "grashommel-resultaat.jpg" }
+                }
+              }
+            }
+          }
+        },
+        no: {
+          q: "Achterlijfspunt geel & rest van achterlijf òf geheel zwart, òf vrijwel geheel licht (bruin)geel?",
+          img: "achterlijfspunt-geel-rest-achterlijf-zwart-of-bruingeel-vraag.jpg",
+          yes: {
+            q: "Zowel borststuk als achterlijf vrijwel geheel zandkleurig geelbruin behaard & tussen de vleugelinplanting met een band van zwarte haren",
+            img: "borststuk-achterlijf-geheel-zandkleurig-vraag.jpg",
+            yes: { result: "Zandhommel", img: "zandhommel-resultaat.jpg" },
+            no: { result: "Gewone koekoekshommel", img: "gewone-koekoekshommel-resultaat.jpg" }
+          },
+          no: {
+            q: "Achterlijfspunt wit & rest van achterlijf geheel zwart of zwart met een gele band?",
+            img: "achterlijfspunt-wit-vraag.jpg",
+            yes: {
+              q: "Borststuk met een gele band vooraan en een gele band achteraan?",
+              img: "borststuk-gele-band-vooraan-achteraan-vraag.jpg",
+              yes: {
+                q: "Kop zeer lang, dieren erg groot? Onder anderen veel in tuinen?",
+                img: "kop-zeer-lang-erg-groot-vraag.jpg",
+                yes: { result: "Tuinhommel", img: "tuinhommel-resultaat.jpg" },
+                no: { result: "Veenhommel", img: "veenhommel-resultaat.jpg" }
+              },
+              no: {
+                q: "Borststuk met slechts één gele band of geheel geel behaard & kop bovenop geel behaard",
+                img: "borststuk-slechts-een-gele-band-vraag.jpg",
+                yes: { result: "Veldhommel (man)", img: "veldhommel-resultaat.jpg" },
+                no: {
+                  q: "Kop bovenop zwart behaard & borststuk met slechts één gele band aan de voorkant?",
+                  img: "kop-bovenop-zwart-borststuk-een-gele-band-voorkant-vraag.jpg",
+                  yes: {
+                    q: "Achterlijf met duidelijke en brede gele band op het tweede segment?",
+                    img: "achterlijf-duidelijke-gele-band-tweede-segment-vraag.jpg",
+                    yes: { result: "Aardhommelcomplex", img: "aardhommelcomplex-resultaat.jpg" },
+                    no: {
+                      q: "Achterlijf zonder gele band & hooguit smal geel bandje op het eerste segment helemaal aan begin van achterlijf?",
+                      img: "achterlijf-zonder-gele-band-hooguit-smal-geel-bandje-vraag.jpg",
+                      yes: { result: "Tweekleurige / Grote koekoekshommel", img: "tweekleurige-grote-koekoekshommel-resultaat.jpg" },
+                      no: { result: "Boom- / Vierkleurige koekoekshommel", img: "boom-vierkleurige-koekoekshommel-resultaat.jpg" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    };
+
+    // Navigatiegeschiedenis
+    let history = [];
+    let current = tree;
+
+    // Splash screen logica
+    document.getElementById('startBtn').onclick = function() {
+      document.getElementById('splash').style.display = 'none';
+      document.getElementById('main-app').style.display = '';
+      showNode(current);
+    };
+
+    // showNode zonder final screen
+    function showNode(node) {
+      const qEl = document.getElementById("question");
+      const imgEl = document.getElementById("image");
+      const answerBtns = document.getElementById("answer-buttons");
+      const navBtns = document.getElementById("nav-buttons");
+      answerBtns.innerHTML = "";
+      navBtns.innerHTML = "";
+
+      if (node.result) {
+        qEl.textContent = node.result;
+        qEl.className = "result";
+        imgEl.src = node.img;
+        imgEl.alt = node.result;
+      } else {
+        qEl.textContent = node.q;
+        qEl.className = "question";
+        imgEl.src = node.img;
+        imgEl.alt = node.q;
+      }
+
+      // Ja/Nee knoppen
+      if (!node.result) {
+        // Ja-knop
+        const yesBtn = document.createElement("button");
+        yesBtn.textContent = "Ja";
+        if (node.yes) {
+          yesBtn.className = "yes";
+          yesBtn.onclick = () => {
+            history.push(current);
+            current = current.yes;
+            showNode(current);
+          };
+        } else {
+          yesBtn.className = "no-option-disabled";
+          yesBtn.disabled = true;
+          yesBtn.style.background = '#ccc';
+          yesBtn.style.color = '#fff';
+          yesBtn.style.cursor = 'not-allowed';
+        }
+        answerBtns.appendChild(yesBtn);
+
+        // Nee-knop
+        const noBtn = document.createElement("button");
+        noBtn.textContent = "Nee";
+        if (node.no) {
+          noBtn.className = "no";
+          noBtn.onclick = () => {
+            history.push(current);
+            current = current.no;
+            showNode(current);
+          };
+        } else {
+          noBtn.className = "no-option-disabled";
+          noBtn.disabled = true;
+          noBtn.style.background = '#ccc';
+          noBtn.style.color = '#fff';
+          noBtn.style.cursor = 'not-allowed';
+        }
+        answerBtns.appendChild(noBtn);
+      }
+
+      // Terug knop
+      const backBtn = document.createElement("button");
+      backBtn.className = "secondary";
+      backBtn.textContent = "Terug";
+      backBtn.onclick = () => {
+        if (history.length > 0) {
+          current = history.pop();
+          showNode(current);
+        } else {
+          current = tree;
+          history = [];
+          showNode(current);
+        }
+      };
+      navBtns.appendChild(backBtn);
+
+      // Opnieuw knop
+      const resetBtn = document.createElement("button");
+      resetBtn.className = "secondary";
+      resetBtn.textContent = "Opnieuw";
+      resetBtn.onclick = () => {
+        current = tree;
+        history = [];
+        showNode(current);
+      };
+      navBtns.appendChild(resetBtn);
+    }
+
+    // Start app in splash mode
+    document.getElementById('main-app').style.display = 'none';
+    document.getElementById('splash').style.display = 'flex';
+  </script>
+</body>
+</html>

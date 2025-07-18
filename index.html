@@ -152,7 +152,7 @@
       <span style="font-size:1.15em;font-weight:bold;letter-spacing:0.01em;">Hommels van Nederland</span>
     </div>
   </div>
-  <div id="splash" style="position:fixed;z-index:10;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;">
+  <div id="splash" style="position:fixed;z-index:10;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:#fff;overflow:auto;padding-top:2.5em;min-height:100vh;">
     <h1 style="font-size:2em;margin-bottom:0.2em;margin-top:2.5em;">Hommels van Nederland</h1>
     <div style="font-size:1.1em;font-weight:500;margin-bottom:1.2em;">Interactieve zoekkaart voor gebruik in het veld</div>
     <img src="bouw-hommel.png" alt="Bouw van een hommel" style="max-width:340px;width:100%;display:block;margin:0 auto 1.2em auto;" />
@@ -178,6 +178,16 @@
     </div>
   </div>
   <script>
+    // Verberg de titelbalk als het splash screen zichtbaar is
+    function updateTitlebarVisibility() {
+      const splash = document.getElementById('splash');
+      const titlebar = document.getElementById('titlebar');
+      if (splash.style.display === 'flex') {
+        titlebar.style.display = 'none';
+      } else {
+        titlebar.style.display = '';
+      }
+    }
     // De volledige flowchart-structuur
     const tree = {
       q: "Bovenkant borststuk egaal oranje/bruin behaard?",
@@ -501,10 +511,11 @@
     let history = [];
     let current = tree;
 
-    // Splash screen logica
+    // Splash start knop
     document.getElementById('startBtn').onclick = function() {
       document.getElementById('splash').style.display = 'none';
       document.getElementById('main-app').style.display = '';
+      updateTitlebarVisibility();
       showNode(current);
     };
 
@@ -512,6 +523,7 @@
     document.getElementById('homeBtn').onclick = function() {
       document.getElementById('splash').style.display = 'flex';
       document.getElementById('main-app').style.display = 'none';
+      updateTitlebarVisibility();
     };
 
     // Titelbalk klikbaar (behalve homebutton)
@@ -519,6 +531,7 @@
       if (e.target.closest('#homeBtn')) return;
       document.getElementById('splash').style.display = 'flex';
       document.getElementById('main-app').style.display = 'none';
+      updateTitlebarVisibility();
     };
 
     // showNode zonder final screen

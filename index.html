@@ -29,18 +29,19 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       padding: 0;
     }
-    .question, .result {
+    .question {
       text-align: center;
-      font-size: 1.25rem;
-      margin: 1.5em 1em 0.5em 1em;
-      min-height: 3em;
+      font-size: 1.6rem;
+      margin: 1.5em auto 0.5em auto;
+      min-height: 3.5em;
+      max-width: 360px;
     }
     .result {
       text-align: center;
-      font-size: 2em;
+      font-size: 2.2em;
       font-weight: bold;
       margin: 1.5em 1em 0.5em 1em;
-      min-height: 3em;
+      min-height: 3.5em;
     }
     .image-container {
       width: 75vw;
@@ -105,9 +106,11 @@
         box-shadow: none;
         padding: 0;
       }
-      .question, .result {
+      .question {
         font-size: 1.1em;
-        margin: 1em 0.5em 0.5em 0.5em;
+        margin: 1.5em auto 0.5em auto;
+        max-width: 360px;
+        text-align: center;
       }
       .result {
         font-size: 2em;
@@ -141,16 +144,28 @@
   </style>
 </head>
 <body>
-  <div id="splash" style="position:fixed;z-index:10;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;">
-    <h1 style="font-size:2em;margin-bottom:0.5em;">Welkom bij de Hommeldeterminatie</h1>
-    <p style="max-width:320px;text-align:center;margin-bottom:1.5em;">Beantwoord een paar vragen over het uiterlijk van de hommel en ontdek direct de soort. Klik op 'Start' om te beginnen.</p>
-    <button id="startBtn" style="font-size:1.2em;padding:0.8em 2em;border:none;border-radius:8px;background:#2ecc40;color:#fff;font-weight:bold;">Start</button>
+  <div class="titlebar" style="position:fixed;top:0;left:0;right:0;z-index:30;height:48px;background:#f7f7fa;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;align-items:center;gap:1em;padding:0 1em;max-width:480px;margin:0 auto;">
+    <button id="homeBtn" style="background:none;border:none;padding:0;margin:0 0.5em 0 0;cursor:pointer;font-size:1.5em;line-height:1;display:flex;align-items:center;justify-content:center;" title="Home" aria-label="Home">
+      <span style="display:inline-block;width:1.5em;height:1.5em;vertical-align:middle;">🐝</span>
+    </button>
+    <span style="font-size:1.15em;font-weight:bold;letter-spacing:0.01em;">Hommels van Nederland</span>
   </div>
-  <div class="container" id="main-app" style="display:none; position:relative;">
+  <div id="splash" style="position:fixed;z-index:10;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;">
+    <h1 style="font-size:2em;margin-bottom:0.2em;margin-top:2.5em;">Hommels van Nederland</h1>
+    <div style="font-size:1.1em;font-weight:500;margin-bottom:1.2em;">Interactieve zoekkaart voor gebruik in het veld</div>
+    <img src="@bouw-hommel.png" alt="Bouw van een hommel" style="max-width:340px;width:100%;display:block;margin:0 auto 1.2em auto;" />
+    <div style="max-width:420px;text-align:left;font-size:1em;line-height:1.5;margin-bottom:1.5em;">
+      Hommels zijn aaibaar, schijnbaar alomtegenwoordig en vrijwel het gehele seizoen te vinden. In iedere tuin, parkje, natuurgebied of wegberm zijn wel hommels te vinden. Toch gaat het met veel soorten niet goed en zijn er zelfs de afgelopen decennia soorten verdwenen uit Nederland. Om die reden willen we graag weten waar welke soorten voorkomen. Daarvoor moeten de soorten wel op naam gebracht worden en dat kan een hele uitdaging zijn. Maar met deze interactieve zoekkaart kan een groot deel van de individuen eenvoudig op naam gebracht worden, waarbij uitsluitend kleurkenmerken zijn gebruikt.
+    </div>
+    <button id="startBtn" style="font-size:1.2em;padding:0.8em 2em;border:none;border-radius:8px;background:#2ecc40;color:#fff;font-weight:bold;margin-bottom:2em;">Start</button>
+    <div style="font-size:0.85em;color:#888;max-width:420px;text-align:center;margin-top:auto;margin-bottom:1.5em;">Informatie gebaseerd op Basisgids Hommels van EIS Kenniscentrum Insecten / Naturalis Biodiversity Center</div>
+  </div>
+  <div class="container" id="main-app" style="display:none; position:relative; margin-top:48px;">
     <div class="main-content" style="flex:1 1 auto; overflow-y:auto; padding-bottom:6.5em;">
       <div class="image-container">
         <img id="image" src="" alt="Vraag afbeelding" />
       </div>
+      <div id="info-block"></div>
       <div class="question" id="question"></div>
     </div>
     <div class="button-bar" style="position:fixed;left:0;right:0;bottom:0;z-index:20;max-width:480px;margin:0 auto;padding:0.7em 1em 0.7em 1em;background:#fff;box-shadow:0 -2px 8px rgba(0,0,0,0.07);display:flex;flex-direction:column;gap:0.5em;">
@@ -489,14 +504,33 @@
       showNode(current);
     };
 
+    // Home button functionaliteit
+    document.getElementById('homeBtn').onclick = function() {
+      document.getElementById('splash').style.display = 'flex';
+      document.getElementById('main-app').style.display = 'none';
+    };
+
     // showNode zonder final screen
     function showNode(node) {
       const qEl = document.getElementById("question");
       const imgEl = document.getElementById("image");
       const answerBtns = document.getElementById("answer-buttons");
       const navBtns = document.getElementById("nav-buttons");
+      const infoBlock = document.getElementById("info-block");
       answerBtns.innerHTML = "";
       navBtns.innerHTML = "";
+      infoBlock.innerHTML = "";
+      // Voeg vraagteken toe aan vragen indien nodig
+      function ensureQuestionMark(text) {
+        if (!text) return text;
+        const trimmed = text.trim();
+        // Geen vraagteken toevoegen aan resultaten (soortnamen)
+        if (trimmed.endsWith("?")) return text;
+        // Heuristiek: als het een vraag is (komt in een vraagveld), voeg ? toe
+        // Resultaten worden getoond als node.result, vragen als node.q
+        // Hier alleen toepassen op node.q
+        return trimmed + "?";
+      }
 
       // Lijst van zeldzame soorten
       const rareResults = [
@@ -510,49 +544,55 @@
       ];
 
       if (node.result) {
-        // Resultaatnaam
-        let barGraph = "";
-        if (node.activeMonths) {
-          const months = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
-          let bars = months.map((m, i) => {
-            const q = node.activeMonths.queen[i];
-            const w = node.activeMonths.worker[i];
-            const ma = node.activeMonths.male[i];
-            let color = '#eee';
-            let style = '';
-            if (ma) {
-              color = '#2ecc40';
-              style = "background: repeating-linear-gradient(135deg, #228c1d, #228c1d 3px, #2ecc40 3px, #2ecc40 7px);";
-            } else if (w) {
-              color = '#2ecc40';
-            } else if (q) {
-              color = '#b2f2bb';
-            }
-            return `<div style='flex:1 1 0;min-width:0;min-height:10px;background:${color};${style}margin:0 1px;border-radius:2px;'></div>`;
-          }).join("");
-          let labels = months.map((m, i) => `<div style='flex:1 1 0;text-align:center;font-size:0.48em;color:#888;'>${m}</div>`).join("");
-          barGraph = `<div style='max-width:95%;margin:0.5em auto 0.2em auto;'><div style='display:flex;gap:0.5px;'>${bars}</div><div style='display:flex;gap:0.5px;margin-top:2px;'>${labels}</div></div>`;
+        // Resultaatnaam, balkgrafiek en periode in een blokje (Boomhommel en andere soorten)
+        let showInfoBlock = node.activeMonths && node.result;
+        if (showInfoBlock) {
+          let barGraph = "";
+          if (node.activeMonths) {
+            const months = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+            let bars = months.map((m, i) => {
+              const q = node.activeMonths.queen[i];
+              const w = node.activeMonths.worker[i];
+              const ma = node.activeMonths.male[i];
+              let color = '#eee';
+              let style = '';
+              if (ma) {
+                color = '#2ecc40';
+                style = "background: repeating-linear-gradient(135deg, #228c1d, #228c1d 3px, #2ecc40 3px, #2ecc40 7px);";
+              } else if (w) {
+                color = '#2ecc40';
+              } else if (q) {
+                color = '#b2f2bb';
+              }
+              return `<div style='flex:1 1 0;min-width:0;min-height:10px;background:${color};${style}margin:0 1px;border-radius:2px;'></div>`;
+            }).join("");
+            let labels = months.map((m, i) => `<div style='flex:1 1 0;text-align:center;font-size:0.48em;color:#888;'>${m}</div>`).join("");
+            barGraph = `<div style='max-width:95%;margin:0.5em auto 0.2em auto;'><div style='display:flex;gap:0.5px;'>${bars}</div><div style='display:flex;gap:0.5px;margin-top:2px;'>${labels}</div></div>`;
+          }
+          let period = node.active ? `<div style='font-size:0.7em;color:#444;margin:0.5em 0 0.2em 0;'>Actief: ${node.active}</div>` : "";
+          const rareClass = rareResults.includes(node.result) ? 'rare-result' : '';
+          infoBlock.innerHTML = `<div style='background:#f7f7fa;border-radius:12px;padding:1em 1em 0.7em 1em;margin:1.2em 1em 1.2em 1em;box-shadow:0 1px 4px rgba(0,0,0,0.04);text-align:center;'>
+            <div class='${rareClass}' style='font-size:1.3em;font-weight:bold;margin-bottom:0.2em;text-align:center;'>${node.result}</div>
+            <div style='text-align:center;'>${barGraph}</div>
+            ${period}
+          </div>`;
+        } else {
+          infoBlock.innerHTML = "";
         }
-        qEl.innerHTML = `<div>${node.result}</div>` + barGraph;
+        // Info-tekst kleiner, links uitlijnen, knop groter (voor alle soorten)
+        let extraInfo = "";
+        if (node.description) {
+          extraInfo += `<div style='width:100%;text-align:left;display:block;'><span style='font-size:0.56em;font-weight:normal;margin:1.2em 0 1.2em 0;color:#222;display:block;'>${node.description}</span></div>`;
+        }
+        if (node.infoUrl) {
+          extraInfo += `<div style='margin-top:0.18em;text-align:center;'><button onclick="window.open('${node.infoUrl}','_blank')" style='font-size:0.48em;padding:0.7em 2.5em;border:none;border-radius:8px;background:#0074d9;color:#fff;font-weight:bold;cursor:pointer;display:inline-block;'>Meer informatie</button></div>`;
+        }
+        qEl.innerHTML = extraInfo;
         qEl.className = "result" + (rareResults.includes(node.result) ? " rare-result" : "");
         imgEl.src = node.img;
         imgEl.alt = node.result;
-        // Extra info tonen indien aanwezig
-        let extraInfo = "";
-        if (node.active) {
-          extraInfo += `<div style='font-size:0.52em;font-weight:normal;margin:0.7em 0 0.7em 0;color:#444;'>Actief: ${node.active}</div>`;
-        }
-        if (node.description) {
-          extraInfo += `<div style='font-size:0.56em;font-weight:normal;margin-top:0.08em;color:#222;'>${node.description}</div>`;
-        }
-        if (node.infoUrl) {
-          extraInfo += `<div style='margin-top:0.18em;'><button onclick="window.open('${node.infoUrl}','_blank')" style='font-size:0.48em;padding:0.18em 0.5em;border:none;border-radius:8px;background:#0074d9;color:#fff;font-weight:bold;cursor:pointer;'>Meer informatie</button></div>`;
-        }
-        if (extraInfo) {
-          qEl.innerHTML += `<div style='max-width:95%;margin:0.1em auto 0.05em auto;'>${extraInfo}</div>`;
-        }
       } else {
-        qEl.textContent = node.q;
+        qEl.textContent = ensureQuestionMark(node.q);
         qEl.className = "question";
         imgEl.src = node.img;
         imgEl.alt = node.q;

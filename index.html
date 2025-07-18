@@ -95,6 +95,9 @@
       color: #fff;
       font-weight: normal;
     }
+    .rare-result {
+      color: #d00;
+    }
     @media (max-width: 600px) {
       .container {
         max-width: 100vw;
@@ -168,11 +171,11 @@
           no: {
             q: "Borststuk met beharing van één lengte? (Van opzij ziet het borststuk er als geschoren uit)",
             img: "borststuk-gelijke-lengte-vraag.jpg",
-            yes: { result: "Moshommel", img: "moshommel-resultaat.jpg" },
+            yes: { result: "Moshommel (zeldzaam!)", img: "moshommel-resultaat.jpg" },
             no: {
               q: "Achterlijf met bruine band aan de basis, tussen de oranje beharing?",
               img: "achterlijf-bruine-band-vraag.jpg",
-              yes: { result: "Heidehommel", img: "Heidehommel-resultaat.jpg" },
+              yes: { result: "Heidehommel (zeldzaam!)", img: "Heidehommel-resultaat.jpg" },
               no: { result: "Akkerhommel (lichte vorm)", img: "akkerhommel-licht-resultaat.jpg" }
             }
           }
@@ -196,7 +199,7 @@
             yes: {
               q: "Vleugel verdonkerd?",
               img: "vleugel-verdonkerd-vraag.jpg",
-              yes: { result: "Rode koekoekshommel (vrouw)", img: "rode-koekoekshommel-vrouw-resultaat.jpg" },
+              yes: { result: "Rode koekoekshommel (vrouw) (zeldzaam!)", img: "rode-koekoekshommel-vrouw-resultaat.jpg" },
               no: {
                 q: "Borststuk en achterlijf geheel zwart behaard?",
                 img: "borststuk-achterlijf-zwart-behaard-vraag.jpg",
@@ -204,13 +207,13 @@
                   q: "Achterschenen met korfjesharen?",
                   img: "achterschenen-korfjesharen-vraag.jpg",
                   yes: { result: "Steenhommel (vrouw)", img: "steenhommel-vrouw-resultaat.jpg" },
-                  no: { result: "Grashommel", img: "grashommel-resultaat.jpg" }
+                  no: { result: "Grashommel (zeldzaam!)", img: "grashommel-resultaat.jpg" }
                 },
                 no: {
                   q: "Borststuk vooraan en achteraan & basis achterlijf met grijs gele haren tussen de zwarte beharing?",
                   img: "borststuk-begin-achterlijf-gele-band-grijsbruine-haren-vraag.jpg",
-                  yes: { result: "Rode koekoekshommel (man)", img: "rode-koekoekshommel-man-resultaat.jpg" },
-                  no: { result: "Grashommel", img: "grashommel-resultaat.jpg" }
+                  yes: { result: "Rode koekoekshommel (man) (zeldzaam!)", img: "rode-koekoekshommel-man-resultaat.jpg" },
+                  no: { result: "Grashommel (zeldzaam!)", img: "grashommel-resultaat.jpg" }
                 }
               }
             }
@@ -222,7 +225,7 @@
           yes: {
             q: "Zowel borststuk als achterlijf vrijwel geheel zandkleurig geelbruin behaard & tussen de vleugelinplanting met een band van zwarte haren",
             img: "borststuk-achterlijf-geheel-zandkleurig-vraag.jpg",
-            yes: { result: "Zandhommel", img: "zandhommel-resultaat.jpg" },
+            yes: { result: "Zandhommel (zeldzaam!)", img: "zandhommel-resultaat.jpg" },
             no: { result: "Gewone koekoekshommel", img: "gewone-koekoekshommel-resultaat.jpg" }
           },
           no: {
@@ -251,7 +254,7 @@
                     no: {
                       q: "Achterlijf zonder gele band & hooguit smal geel bandje op het eerste segment helemaal aan begin van achterlijf?",
                       img: "achterlijf-zonder-gele-band-hooguit-smal-geel-bandje-vraag.jpg",
-                      yes: { result: "Tweekleurige / Grote koekoekshommel", img: "tweekleurige-grote-koekoekshommel-resultaat.jpg" },
+                      yes: { result: "Tweekleurige / Grote koekoekshommel (zeldzaam!)", img: "tweekleurige-grote-koekoekshommel-resultaat.jpg" },
                       no: { result: "Boom- / Vierkleurige koekoekshommel", img: "boom-vierkleurige-koekoekshommel-resultaat.jpg" }
                     }
                   }
@@ -283,9 +286,20 @@
       answerBtns.innerHTML = "";
       navBtns.innerHTML = "";
 
+      // Lijst van zeldzame soorten
+      const rareResults = [
+        "Moshommel (zeldzaam!)",
+        "Heidehommel (zeldzaam!)",
+        "Rode koekoekshommel (vrouw) (zeldzaam!)",
+        "Grashommel (zeldzaam!)",
+        "Rode koekoekshommel (man) (zeldzaam!)",
+        "Zandhommel (zeldzaam!)",
+        "Tweekleurige / Grote koekoekshommel (zeldzaam!)"
+      ];
+
       if (node.result) {
         qEl.textContent = node.result;
-        qEl.className = "result";
+        qEl.className = "result" + (rareResults.includes(node.result) ? " rare-result" : "");
         imgEl.src = node.img;
         imgEl.alt = node.result;
       } else {

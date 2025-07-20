@@ -144,9 +144,9 @@
   </style>
 </head>
 <body>
-  <div class="titlebar" id="titlebar" style="position:fixed;top:0;left:0;right:0;z-index:30;height:48px;background:#f7f7fa;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;align-items:center;justify-content:center;padding:0;max-width:480px;margin:0 auto;cursor:pointer;">
+  <div class="titlebar" id="titlebar" style="position:fixed;top:0;left:0;right:0;z-index:30;height:48px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.04);display:flex;align-items:center;justify-content:center;padding:0;max-width:480px;margin:0 auto;cursor:pointer;">
     <button id="homeBtn" style="position:absolute;left:0;top:0;bottom:0;background:none;border:none;padding:0 1em 0 0.7em;cursor:pointer;font-size:1.5em;line-height:1;display:flex;align-items:center;justify-content:center;flex:0 0 auto;z-index:2;height:48px;align-self:stretch;">
-      <span style="display:flex;align-items:center;height:100%;font-size:1.5em;">🐝</span>
+      <img src="aardhommelcomplex-resultaat.jpg" alt="Aardhommelcomplex" style="display:flex;align-items:center;height:32px;max-height:32px;width:auto;" />
     </button>
     <div id="titlebarCenter" style="position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
       <span style="font-size:1.15em;font-weight:bold;letter-spacing:0.01em;line-height:1;">Hommels van Nederland</span>
@@ -158,11 +158,14 @@
       <div style="font-size:2em;font-weight:700;margin-bottom:0.15em;">Hommels van Nederland</div>
       <div style="font-size:1.1em;font-weight:500;color:#444;">Interactieve zoekkaart voor gebruik in het veld</div>
     </div>
-    <img src="bouw-hommel.png" alt="Bouw van een hommel" style="max-width:340px;width:100%;display:block;margin:0 auto 1.2em auto;" />
     <div style="max-width:420px;text-align:left;font-size:1em;line-height:1.5;margin-bottom:1.5em;">
-      Hommels zijn aaibaar en bijna het hele seizoen overal te vinden: in tuinen, parken, natuurgebieden en bermen. Toch gaat het met veel soorten slecht; sommige zijn zelfs verdwenen uit Nederland. Daarom is het belangrijk te weten waar welke soorten voorkomen. Daarvoor moeten ze op naam worden gebracht, wat lastig kan zijn. Met deze interactieve zoekkaart lukt dat eenvoudig, dankzij herkenning op kleurkenmerken.
+      Deze interactieve zoekkaart helpt je bij het herkennen van hommels. Klik op de vraag en kies de juiste optie.
     </div>
-    <button id="startBtn" style="font-size:1.2em;padding:0.8em 2em;border:none;border-radius:8px;background:#2ecc40;color:#fff;font-weight:bold;margin-bottom:4em;">Start</button>
+    <button id="startBtn" style="font-size:1.2em;padding:0.8em 2em;border:none;border-radius:8px;background:#2ecc40;color:#fff;font-weight:bold;margin-bottom:2em;">Start</button>
+    <img src="bouw-hommel.png" alt="Bouw van een hommel" style="max-width:340px;width:100%;display:block;margin:0 auto 1.2em auto;" />
+    <div style="max-width:420px;text-align:left;font-size:0.85em;line-height:1.5;margin-bottom:1.5em;">
+      Het lichaam van een hommel bestaat uit drie delen: een kop, een borststuk en een achterlijf. Het borststuk draagt drie paar poten en twee paar vleugels. Mannetjes en vrouwtjes onderscheiden zich door het aantal antenneleden en het aantal achterlijfssegmenten, 12 antenneleden en 6 achterlijfssegmenten bij vrouwtjes en 13 en 7 bij mannetjes. Tevens is de vorm van het achterlijf vaak wat breder en meer afgerond bij vrouwtjes.
+    </div>
     <div id="splash-footer" style="background:#fff;padding:1em 1.2em 1.2em 1.2em;font-size:0.85em;color:#888;max-width:420px;margin:0 auto 0 auto;text-align:center;">
       Gecreëerd door Arnold Hoogerwerf op basis van informatie uit de Basisgids Hommels en de Zoekkaart Hommels van <a href="https://kenniscentruminsecten.nl/" target="_blank" style="color:#0074d9;text-decoration:underline;">EIS Kenniscentrum Insecten</a> / Naturalis Biodiversity Center
     </div>
@@ -223,8 +226,8 @@
           description: "De boomhommel is een vrij grote hommelsoort die veel voorkomt in tuinen, parken en bosranden. Het borststuk is oranje-bruin behaard, het achterlijf is zwart met een witte punt. Boomhommels nestelen vaak in nestkastjes of holle bomen. Ze zijn goed te herkennen aan hun kleurpatroon en hun voorkeur voor nestplaatsen boven de grond.",
           infoUrl: "https://nl.wikipedia.org/wiki/Boomhommel",
           activeMonths: {
-            queen:  [false, true, true, true, true, true, false, false, false, false, false, false], // feb-aug
-            worker: [false, false, true, true, true, true, true, true, false, false, false, false], // mrt-aug
+            queen:  [false, false, true, true, true, true, false, false, false, false, false, false], // feb-aug
+            worker: [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
             male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
           }
         },
@@ -460,9 +463,9 @@
                   description: "De veenhommel is een vrij kleine hommel met een korte kop en een lichte beharing. Ze komt vooral voor in veengebieden en natte heide.",
                   infoUrl: "https://nl.wikipedia.org/wiki/Veenhommel",
                   activeMonths: {
-                    queen:  [false, false, false, false, true, true, true, true, true, false, false, false], // apr-aug
-                    worker: [false, false, false, false, false, true, true, true, true, true, false, false], // mei-aug
-                    male:   [false, false, false, false, false, false, true, true, true, true, false, false] // jun-aug
+                    queen:  [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
+                    worker: [false, false, false, false, true, true, true, true, false, false, false, false], // mei-aug
+                    male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                   }
                 }
               },
@@ -580,44 +583,54 @@
           let barGraph = "";
           if (node.activeMonths) {
             const months = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
-            let bars = months.map((m, i) => {
-              const q = node.activeMonths.queen[i];
-              const w = node.activeMonths.worker[i];
-              const ma = node.activeMonths.male[i];
-              let color = '#eee';
-              let style = '';
-              if (ma) {
-                color = '#2ecc40';
-                style = "background: repeating-linear-gradient(135deg, #228c1d, #228c1d 3px, #2ecc40 3px, #2ecc40 7px);";
-              } else if (w) {
-                color = '#2ecc40';
-              } else if (q) {
-                color = '#b2f2bb';
-              }
-              return `<div style='flex:1 1 0;min-width:0;min-height:10px;background:${color};${style}margin:0 1px;border-radius:2px;'></div>`;
-            }).join("");
-            let labels = months.map((m, i) => `<div style='flex:1 1 0;text-align:center;font-size:0.48em;color:#888;'>${m}</div>`).join("");
-            barGraph = `<div style='max-width:95%;margin:0.5em auto 0.2em auto;'><div style='display:flex;gap:0.5px;'>${bars}</div><div style='display:flex;gap:0.5px;margin-top:2px;'>${labels}</div></div>`;
+            // Detecteer of er geen werksters zijn (alle worker false)
+            const hasWorkers = node.activeMonths.worker && node.activeMonths.worker.some(Boolean);
+            if (!hasWorkers) {
+              // Toon één enkele balk voor alle maanden waarin queen of male actief is
+              let active = months.map((m, i) => (node.activeMonths.queen?.[i] || node.activeMonths.male?.[i]) ? true : false);
+              let bars = active.map((isActive, i) => {
+                let color = isActive ? '#2ecc40' : '#eee';
+                let style = isActive ? '' : '';
+                return `<div style='flex:1 1 0;min-width:0;min-height:10px;background:${color};${style}margin:0 1px;border-radius:2px;'></div>`;
+              }).join("");
+              let labels = months.map((m, i) => `<div style='flex:1 1 0;text-align:center;font-size:0.48em;color:#888;'>${m}</div>`).join("");
+              barGraph = `<div style='max-width:95%;margin:0.5em auto 0.2em auto;'><div style='display:flex;gap:0.5px;'>${bars}</div><div style='display:flex;gap:0.5px;margin-top:2px;'>${labels}</div><div style='text-align:center;font-size:0.7em;color:#444;margin-top:0.2em;'>Actief</div></div>`;
+            } else {
+              let bars = months.map((m, i) => {
+                const q = node.activeMonths.queen[i];
+                const w = node.activeMonths.worker[i];
+                const ma = node.activeMonths.male[i];
+                let color = '#eee';
+                let style = '';
+                if (ma) {
+                  color = '#2ecc40';
+                  style = "background: repeating-linear-gradient(135deg, #228c1d, #228c1d 3px, #2ecc40 3px, #2ecc40 7px);";
+                } else if (w) {
+                  color = '#2ecc40';
+                } else if (q) {
+                  color = '#b2f2bb';
+                }
+                return `<div style='flex:1 1 0;min-width:0;min-height:10px;background:${color};${style}margin:0 1px;border-radius:2px;'></div>`;
+              }).join("");
+              let labels = months.map((m, i) => `<div style='flex:1 1 0;text-align:center;font-size:0.48em;color:#888;'>${m}</div>`).join("");
+              barGraph = `<div style='max-width:95%;margin:0.5em auto 0.2em auto;'><div style='display:flex;gap:0.5px;'>${bars}</div><div style='display:flex;gap:0.5px;margin-top:2px;'>${labels}</div>`;
+            }
           }
           let period = node.active ? `<div style='font-size:0.7em;color:#444;margin:0.5em 0 0.2em 0;'>Actief: ${node.active}</div>` : "";
           const rareClass = rareResults.includes(node.result) ? 'rare-result' : '';
+          let descriptionBlock = node.description ? `<div style='width:100%;text-align:left;display:block;margin-top:0.7em;'><span style='font-size:1rem;font-weight:normal;color:#222;display:block;'>${node.description}</span></div>` : "";
+          let infoBtn = node.infoUrl ? `<div style='margin-top:1em;margin-bottom:1em;text-align:center;'><button onclick="window.open('${node.infoUrl}','_blank')" style='font-size:1em;padding:0.9em 2.5em;border:none;border-radius:8px;background:#0074d9;color:#fff;font-weight:bold;cursor:pointer;display:inline-block;'>Meer informatie</button></div>` : "";
           infoBlock.innerHTML = `<div style='background:#f7f7fa;border-radius:12px;padding:1em 1em 0.7em 1em;margin:1.2em 1em 1.2em 1em;box-shadow:0 1px 4px rgba(0,0,0,0.04);text-align:center;'>
             <div class='${rareClass}' style='font-size:2.0em;font-weight:bold;margin-bottom:0.2em;text-align:center;'>${node.result}</div>
             <div style='text-align:center;'>${barGraph}</div>
             ${period}
+            ${descriptionBlock}
+            ${infoBtn}
           </div>`;
         } else {
           infoBlock.innerHTML = "";
         }
-        // Info-tekst kleiner, links uitlijnen, knop groter (voor alle soorten)
-        let extraInfo = "";
-        if (node.description) {
-          extraInfo += `<div style='width:100%;text-align:left;display:block;'><span style='font-size:1rem;font-weight:normal;margin:1.2em 0 1.2em 0;color:#222;display:block;'>${node.description}</span></div>`;
-        }
-        if (node.infoUrl) {
-          extraInfo += `<div style='margin-top:0.18em;text-align:center;'><button onclick="window.open('${node.infoUrl}','_blank')" style='font-size:0.48em;padding:0.7em 2.5em;border:none;border-radius:8px;background:#0074d9;color:#fff;font-weight:bold;cursor:pointer;display:inline-block;'>Meer informatie</button></div>`;
-        }
-        qEl.innerHTML = extraInfo;
+        qEl.innerHTML = "";
         qEl.className = "result" + (rareResults.includes(node.result) ? " rare-result" : "");
         imgEl.src = node.img;
         imgEl.alt = node.result;

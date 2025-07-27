@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hommeldeterminatie</title>
+  <title>Zoekkaart hommels</title>
   <style>
     html, body {
       height: 100%;
@@ -149,17 +149,14 @@
       <img src="aardhommelcomplex-resultaat.jpg" alt="Aardhommelcomplex" style="display:flex;align-items:center;height:32px;max-height:32px;width:auto;" />
     </button>
     <div id="titlebarCenter" style="position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-      <span style="font-size:1.15em;font-weight:bold;letter-spacing:0.01em;line-height:1;">Hommels van Nederland</span>
+      <span style="font-size:1.15em;font-weight:bold;letter-spacing:0.01em;line-height:1;">Zoekkaart hommels</span>
     </div>
     <div id="titlebarClickArea" style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:1;"></div>
   </div>
   <div id="splash" style="position:fixed;z-index:10;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:#fff;overflow:auto;padding-top:2.5em;padding-bottom:4.5em;min-height:100vh;padding-left:1.2em;padding-right:1.2em;">
     <div style="width:100%;max-width:420px;text-align:center;margin-bottom:1.2em;">
-      <div style="font-size:2em;font-weight:700;margin-bottom:0.15em;">Hommels van Nederland</div>
+      <div style="font-size:2em;font-weight:700;margin-bottom:0.15em;">Zoekkaart hommels</div>
       <div style="font-size:1.1em;font-weight:500;color:#444;">Interactieve zoekkaart voor gebruik in het veld</div>
-    </div>
-    <div style="max-width:420px;text-align:left;font-size:1em;line-height:1.5;margin-bottom:1.5em;">
-      Deze interactieve zoekkaart helpt je bij het herkennen van hommels. Klik op de vraag en kies de juiste optie.
     </div>
     <button id="startBtn" style="font-size:1.2em;padding:0.8em 2em;border:none;border-radius:8px;background:#2ecc40;color:#fff;font-weight:bold;margin-bottom:2em;">Start</button>
     <img src="bouw-hommel.png" alt="Bouw van een hommel" style="max-width:340px;width:100%;display:block;margin:0 auto 1.2em auto;" />
@@ -367,7 +364,7 @@
                   img: "borststuk-begin-achterlijf-gele-band-grijsbruine-haren-vraag.jpg",
                   yes: {
                     q: "Voorkant borststuk & voorkant achterlijf met gele band?",
-                    img: "borststuk-gele-band-vooraan-achteraan-vraag.jpg",
+                    img: "voorkant-borstuk-voorkant-achterlijf-gele-band.jpg",
                     yes: { result: "Weidehommel (vrouw)", img: "weidehommel-vrouw-resultaat.jpg",
                       active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
                       description: "De vrouwtjes van de weidehommel zijn klein, met een gele band op het borststuk en een oranje achterlijfspunt. Ze nestelen bovengronds in graslanden en tuinen.",
@@ -665,7 +662,7 @@
         // Nee-knop
         const noBtn = document.createElement("button");
         noBtn.textContent = "Nee";
-        if (node.no) {
+        if (node.no && (node.no.q || node.no.result)) {
           noBtn.className = "no";
           noBtn.onclick = () => {
             history.push(current);

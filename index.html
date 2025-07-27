@@ -222,62 +222,62 @@
         yes: {
           result: "Boomhommel",
           img: "boomhommel-resultaat.jpg",
-          active: "Maart – augustus (koningin vanaf februari, werksters vanaf april, mannetjes vanaf mei)",
+          active: "Maart – september (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
           description: "De boomhommel is een vrij grote hommelsoort die veel voorkomt in tuinen, parken en bosranden. Het borststuk is oranje-bruin behaard, het achterlijf is zwart met een witte punt. Boomhommels nestelen vaak in nestkastjes of holle bomen. Ze zijn goed te herkennen aan hun kleurpatroon en hun voorkeur voor nestplaatsen boven de grond.",
           infoUrl: "https://nl.wikipedia.org/wiki/Boomhommel",
           activeMonths: {
-            queen:  [false, false, true, true, true, true, false, false, false, false, false, false], // feb-aug
-            worker: [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
-            male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+            queen:  [false, false, true, true, true, true, true, true, true, false, false, false], // mrt-sep
+            worker: [false, false, false, true, true, true, true, true, true, false, false, false], // apr-sep
+            male:   [false, false, false, false, true, true, true, true, true, false, false, false] // mei-sep
           }
         },
         no: {
           q: "Achterlijf of gehele achterlijf oranjerood, met duidelijke zwarte haren?",
           img: "achterlijf-oranjerood-vraag.jpg",
           yes: { result: "Akkerhommel (donkere vorm)", img: "akkerhommel-donker-resultaat.jpg",
-            active: "Maart – oktober (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+            active: "Maart – oktober (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
             description: "De akkerhommel is een vrij kleine, oranje tot lichtbruine hommel die veel voorkomt in tuinen, graslanden en bermen. De soort is variabel van kleur, met een lichte en een donkere vorm. Ze nestelen vaak bovengronds in graspolen of onder mos.",
             infoUrl: "https://nl.wikipedia.org/wiki/Akkerhommel",
             activeMonths: {
               queen:  [false, false, true, true, true, true, true, true, true, true, false, false], // mrt-okt
               worker: [false, false, false, true, true, true, true, true, true, true, false, false], // apr-okt
-              male:   [false, false, false, false, true, true, true, true, true, true, false, false] // mei-okt
+              male:   [false, false, false, false, false, true, true, true, true, true, false, false] // jun-okt
             }
           },
           no: {
             q: "Borststuk met beharing van één lengte? (Van opzij ziet het borststuk er als geschoren uit)",
             img: "borststuk-gelijke-lengte-vraag.jpg",
             yes: { result: "Moshommel (zeldzaam!)", img: "moshommel-resultaat.jpg",
-              active: "Mei – september (koningin vanaf mei, werksters vanaf juni, mannetjes vanaf juli)",
+              active: "April – september (koningin vanaf april, werksters vanaf mei, mannetjes vanaf juni)",
               description: "De moshommel is een zeldzame soort met een oranje tot zandkleurige beharing. Ze nestelen vaak in graslanden en duinen, meestal bovengronds onder mos. De soort is te herkennen aan de gelijkmatige beharing en het ontbreken van duidelijke banden.",
               infoUrl: "https://www.wildebijen.nl/mos_hommel.html",
               activeMonths: {
-                queen:  [false, false, false, false, false, true, true, true, true, false, false, false], // mei-sep
-                worker: [false, false, false, false, false, false, true, true, true, true, false, false], // jun-sep
-                male:   [false, false, false, false, false, false, false, true, true, true, false, false] // jul-sep
+                queen:  [false, false, false, true, true, true, true, true, true, false, false, false], // apr-sep
+                worker: [false, false, false, false, true, true, true, true, true, false, false, false], // mei-sep
+                male:   [false, false, false, false, false, true, true, true, true, false, false, false] // jun-sep
               }
             },
             no: {
               q: "Achterlijf met bruine band aan de basis, tussen de oranje beharing?",
               img: "achterlijf-bruine-band-vraag.jpg",
               yes: { result: "Heidehommel (zeldzaam!)", img: "Heidehommel-resultaat.jpg",
-                active: "Mei – september (koningin vanaf mei, werksters vanaf juni, mannetjes vanaf juli)",
+                active: "April – september (koningin vanaf april, werksters vanaf mei, mannetjes vanaf juni)",
                 description: "De heidehommel is een zeldzame soort van schrale graslanden en heidevelden. Ze zijn lichtgeel tot zandkleurig behaard met een bruine band op het achterlijf. De soort is lastig te onderscheiden van andere lichte hommels.",
                 infoUrl: "https://nl.wikipedia.org/wiki/Heidehommel",
                 activeMonths: {
-                  queen:  [false, false, false, false, false, true, true, true, true, false, false, false], // mei-sep
-                  worker: [false, false, false, false, false, false, true, true, true, true, false, false], // jun-sep
-                  male:   [false, false, false, false, false, false, false, true, true, true, false, false] // jul-sep
+                  queen:  [false, false, false, true, true, true, true, true, true, false, false, false], // apr-sep
+                  worker: [false, false, false, false, true, true, true, true, true, false, false, false], // mei-sep
+                  male:   [false, false, false, false, false, true, true, true, true, false, false, false] // jun-sep
                 }
               },
               no: { result: "Akkerhommel (lichte vorm)", img: "akkerhommel-licht-resultaat.jpg",
-                active: "Maart – oktober (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+                active: "Maart – oktober (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
                 description: "De lichte vorm van de akkerhommel heeft een overwegend gele tot lichtbruine beharing. Komt veel voor in tuinen, graslanden en bermen. Nestelt vaak bovengronds in graspolen of onder mos.",
                 infoUrl: "https://nl.wikipedia.org/wiki/Akkerhommel",
                 activeMonths: {
                   queen:  [false, false, true, true, true, true, true, true, true, true, false, false], // mrt-okt
                   worker: [false, false, false, true, true, true, true, true, true, true, false, false], // apr-okt
-                  male:   [false, false, false, false, true, true, true, true, true, true, false, false] // mei-okt
+                  male:   [false, false, false, false, false, true, true, true, true, true, false, false] // jun-okt
                 }
               }
             }
@@ -294,23 +294,23 @@
             q: "Achterlijf zwart met rode punt & achterlijf kort en gelijkmatig behaard?",
             img: "achterlijf-zwart-met-rode-punt-kort-behaard-vraag.jpg",
             yes: { result: "Steenhommel (man)", img: "steenhommel-man-resultaat.jpg",
-              active: "April – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+              active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
               description: "De steenhommel is een grote, geheel zwarte hommel met een oranjerode achterlijfspunt. De mannetjes zijn te herkennen aan hun lichtere beharing op het gezicht. Ze nestelen vaak onder de grond, in oude muizenholen of composthopen.",
               infoUrl: "https://nl.wikipedia.org/wiki/Steenhommel",
               activeMonths: {
                 queen:  [false, false, true, true, true, true, true, false, false, false, false, false], // mrt-aug
                 worker: [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
-                male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
               }
             },
             no: { result: "Weidehommel (man)", img: "weidehommel-man-resultaat.jpg",
-              active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+              active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
               description: "De weidehommel is een kleine hommel met een gele band op het borststuk en een oranje achterlijfspunt. De mannetjes zijn te herkennen aan hun lichtere kleur. Ze nestelen bovengronds in graslanden en tuinen.",
               infoUrl: "https://nl.wikipedia.org/wiki/Weidehommel",
               activeMonths: {
                 queen:  [false, false, true, true, true, true, true, false, false, false, false, false], // mrt-aug
                 worker: [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
-                male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
               }
             }
           },
@@ -321,13 +321,13 @@
               q: "Vleugel verdonkerd?",
               img: "vleugel-verdonkerd-vraag.jpg",
               yes: { result: "Rode koekoekshommel (vrouw) (zeldzaam!)", img: "rode-koekoekshommel-vrouw-resultaat.jpg",
-                active: "April – augustus (vooral mei – juli)",
+                active: "Mei – augustus (vooral juni – juli)",
                 description: "De rode koekoekshommel is een parasitaire soort die haar eieren legt in nesten van andere hommels, vooral de steenhommel. De vrouwtjes zijn geheel zwart met een rode achterlijfspunt en hebben verdonkerde vleugels.",
                 infoUrl: "https://nl.wikipedia.org/wiki/Rode_koekoekshommel",
                 activeMonths: {
-                  queen:  [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
+                  queen:  [false, false, false, false, true, true, true, true, false, false, false, false], // mei-aug
                   worker: [false, false, false, false, false, false, false, false, false, false, false, false],
-                  male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                  male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                 }
               },
               no: {
@@ -337,13 +337,13 @@
                   q: "Achterschenen met korfjesharen?",
                   img: "achterschenen-korfjesharen-vraag.jpg",
                   yes: { result: "Steenhommel (vrouw)", img: "steenhommel-vrouw-resultaat.jpg",
-                    active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+                    active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
                     description: "De vrouwtjes van de steenhommel zijn groot, geheel zwart met een oranjerode achterlijfspunt. Ze nestelen vaak ondergronds in oude muizenholen of composthopen.",
                     infoUrl: "https://nl.wikipedia.org/wiki/Steenhommel",
                     activeMonths: {
                       queen:  [false, false, true, true, true, true, true, false, false, false, false, false], // mrt-aug
                       worker: [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
-                      male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                      male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                     }
                   },
                   no: {
@@ -354,9 +354,9 @@
                       description: "De grashommel is een kleine, zeldzame hommel met een zwart lichaam en een oranjerode achterlijfspunt. Ze nestelen bovengronds in graslanden en zijn te herkennen aan de oranjerode haren op de achterschenen.",
                       infoUrl: "https://nl.wikipedia.org/wiki/Grashommel",
                       activeMonths: {
-                        queen:  [false, false, false, false, true, true, true, true, true, false, false, false], // apr-aug
-                        worker: [false, false, false, false, false, true, true, true, true, true, false, false], // mei-aug
-                        male:   [false, false, false, false, false, false, true, true, true, true, false, false] // jun-aug
+                        queen:  [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
+                        worker: [false, false, false, false, true, true, true, true, false, false, false, false], // mei-aug
+                        male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                       }
                     },
                     no: {}
@@ -369,13 +369,13 @@
                     q: "Voorkant borststuk & voorkant achterlijf met gele band?",
                     img: "borststuk-gele-band-vooraan-achteraan-vraag.jpg",
                     yes: { result: "Weidehommel (vrouw)", img: "weidehommel-vrouw-resultaat.jpg",
-                      active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+                      active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
                       description: "De vrouwtjes van de weidehommel zijn klein, met een gele band op het borststuk en een oranje achterlijfspunt. Ze nestelen bovengronds in graslanden en tuinen.",
                       infoUrl: "https://nl.wikipedia.org/wiki/Weidehommel",
                       activeMonths: {
                         queen:  [false, false, true, true, true, true, true, false, false, false, false, false], // mrt-aug
                         worker: [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
-                        male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                        male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                       }
                     }
                   },
@@ -389,7 +389,7 @@
                       activeMonths: {
                         queen:  [false, false, false, false, false, false, false, false, false, false, false, false],
                         worker: [false, false, false, false, false, false, false, false, false, false, false, false],
-                        male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                        male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                       }
                     },
                     no: {
@@ -400,9 +400,9 @@
                         description: "De grashommel is een kleine, zeldzame hommel met een zwart lichaam en een oranjerode achterlijfspunt. Ze nestelen bovengronds in graslanden en zijn te herkennen aan de oranjerode haren op de achterschenen.",
                         infoUrl: "https://nl.wikipedia.org/wiki/Grashommel",
                         activeMonths: {
-                          queen:  [false, false, false, false, true, true, true, true, true, false, false, false], // apr-aug
-                          worker: [false, false, false, false, false, true, true, true, true, true, false, false], // mei-aug
-                          male:   [false, false, false, false, false, false, true, true, true, true, false, false] // jun-aug
+                          queen:  [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
+                          worker: [false, false, false, false, true, true, true, true, false, false, false, false], // mei-aug
+                          male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                         }
                       }
                     }
@@ -419,23 +419,23 @@
             q: "Zowel borststuk als achterlijf vrijwel geheel zandkleurig geelbruin behaard & tussen de vleugelinplanting met een band van zwarte haren",
             img: "borststuk-achterlijf-geheel-zandkleurig-vraag.jpg",
             yes: { result: "Zandhommel (zeldzaam!)", img: "zandhommel-resultaat.jpg",
-              active: "Mei – augustus (koningin vanaf mei, werksters vanaf juni, mannetjes vanaf juli)",
+              active: "April – augustus (koningin vanaf april, werksters vanaf mei, mannetjes vanaf juni)",
               description: "De zandhommel is een zeldzame soort van schrale graslanden en duinen. Ze zijn lichtgeel tot zandkleurig behaard en nestelen meestal bovengronds onder gras of mos.",
               infoUrl: "https://nl.wikipedia.org/wiki/Zandhommel",
               activeMonths: {
-                queen:  [false, false, false, false, false, true, true, true, true, false, false, false], // mei-aug
-                worker: [false, false, false, false, false, false, true, true, true, true, false, false], // jun-aug
-                male:   [false, false, false, false, false, false, false, true, true, true, false, false] // jul-aug
+                queen:  [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
+                worker: [false, false, false, false, true, true, true, true, false, false, false, false], // mei-aug
+                male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
               }
             },
             no: { result: "Gewone koekoekshommel", img: "gewone-koekoekshommel-resultaat.jpg",
-              active: "April – augustus (vooral mei – juli)",
+              active: "April – augustus (vooral juni – juli)",
               description: "De gewone koekoekshommel is een parasitaire soort die haar eieren legt in nesten van andere hommels, vooral de veldhommel en aardhommel. Ze is te herkennen aan de overwegend gele lichaamsbeharing en het ontbreken van stuifmeelkorfjes.",
               infoUrl: "https://nl.wikipedia.org/wiki/Gewone_koekoekshommel",
               activeMonths: {
                 queen:  [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
                 worker: [false, false, false, false, false, false, false, false, false, false, false, false],
-                male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
               }
             }
           },
@@ -449,13 +449,13 @@
                 q: "Kop zeer lang, dieren erg groot? Onder anderen veel in tuinen?",
                 img: "kop-zeer-lang-erg-groot-vraag.jpg",
                 yes: { result: "Tuinhommel", img: "tuinhommel-resultaat.jpg",
-                  active: "Maart – september (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+                  active: "Maart – september (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
                   description: "De tuinhommel is een vrij grote hommel met een lang gezicht en een opvallend lange tong. Ze heeft een zwart lichaam met gele banden en een witte achterlijfspunt. Komt veel voor in tuinen en parken.",
                   infoUrl: "https://nl.wikipedia.org/wiki/Tuinhommel",
                   activeMonths: {
                     queen:  [false, false, true, true, true, true, true, true, true, false, false, false], // mrt-sep
-                    worker: [false, false, false, true, true, true, true, true, true, true, false, false], // apr-sep
-                    male:   [false, false, false, false, true, true, true, true, true, true, false, false] // mei-sep
+                    worker: [false, false, false, true, true, true, true, true, true, false, false, false], // apr-sep
+                    male:   [false, false, false, false, false, true, true, true, true, false, false, false] // jun-sep
                   }
                 },
                 no: { result: "Veenhommel", img: "veenhommel-resultaat.jpg",
@@ -473,13 +473,13 @@
                 q: "Borststuk met slechts één gele band of geheel geel behaard & kop bovenop geel behaard",
                 img: "borststuk-slechts-een-gele-band-vraag.jpg",
                 yes: { result: "Veldhommel (man)", img: "veldhommel-resultaat.jpg",
-                  active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+                  active: "Maart – augustus (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
                   description: "De veldhommel is een vrij kleine hommel met een zwart lichaam, citroengele banden en een witte achterlijfspunt. De mannetjes zijn te herkennen aan hun lichtere kleur. Ze nestelen ondergronds of bovengronds in graslanden.",
                   infoUrl: "https://nl.wikipedia.org/wiki/Veldhommel",
                   activeMonths: {
                     queen:  [false, false, true, true, true, true, true, false, false, false, false, false], // mrt-aug
                     worker: [false, false, false, true, true, true, true, true, false, false, false, false], // apr-aug
-                    male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                    male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                   }
                 },
                 no: {
@@ -489,13 +489,13 @@
                     q: "Achterlijf met duidelijke en brede gele band op het tweede segment?",
                     img: "achterlijf-duidelijke-gele-band-tweede-segment-vraag.jpg",
                     yes: { result: "Aardhommelcomplex", img: "aardhommelcomplex-resultaat.jpg",
-                      active: "Maart – oktober (koningin vanaf maart, werksters vanaf april, mannetjes vanaf mei)",
+                      active: "Maart – oktober (koningin vanaf maart, werksters vanaf april, mannetjes vanaf juni)",
                       description: "Het aardhommelcomplex bestaat uit een groep lastig te onderscheiden soorten, waaronder de aardhommel, grote veldhommel en lichte koekoekshommel. Ze hebben een zwart lichaam met gele banden en een witte achterlijfspunt.",
                       infoUrl: "https://nl.wikipedia.org/wiki/Aardhommel",
                       activeMonths: {
                         queen:  [false, false, true, true, true, true, true, true, true, true, false, false], // mrt-okt
                         worker: [false, false, false, true, true, true, true, true, true, true, false, false], // apr-okt
-                        male:   [false, false, false, false, true, true, true, true, true, true, false, false] // mei-okt
+                        male:   [false, false, false, false, false, true, true, true, true, true, false, false] // jun-okt
                       }
                     },
                     no: {
@@ -508,7 +508,7 @@
                         activeMonths: {
                           queen:  [false, false, false, false, false, false, false, false, false, false, false, false],
                           worker: [false, false, false, false, false, false, false, false, false, false, false, false],
-                          male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                          male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                         }
                       },
                       no: { result: "Boom- / Vierkleurige koekoekshommel", img: "boom-vierkleurige-koekoekshommel-resultaat.jpg",
@@ -518,7 +518,7 @@
                         activeMonths: {
                           queen:  [false, false, false, false, false, false, false, false, false, false, false, false],
                           worker: [false, false, false, false, false, false, false, false, false, false, false, false],
-                          male:   [false, false, false, false, true, true, true, true, false, false, false, false] // mei-aug
+                          male:   [false, false, false, false, false, true, true, true, false, false, false, false] // jun-aug
                         }
                       }
                     }

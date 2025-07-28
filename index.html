@@ -153,7 +153,7 @@
     </div>
     <div id="titlebarClickArea" style="position:absolute;left:0;right:0;top:0;bottom:0;z-index:1;"></div>
   </div>
-  <div id="splash" style="position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:#fff;padding-top:2.5em;padding-bottom:2em;min-height:100vh;padding-left:1.2em;padding-right:1.2em;">
+  <div id="splash" style="position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;background:#fff;padding-top:0.5em;padding-bottom:2em;min-height:100vh;padding-left:1.2em;padding-right:1.2em;">
     <div style="width:100%;max-width:440px;text-align:center;margin-bottom:1.2em;">
       <img src="EIS-Logo_rond3_Tekengebied-1.png.webp" alt="EIS Kenniscentrum Insecten" style="width:120px;height:120px;margin:0 auto 0.1em auto;display:block;" />
       <div style="font-size:2em;font-weight:700;margin-bottom:0.15em;">Zoekkaart hommels</div>
@@ -165,7 +165,7 @@
       Het lichaam van een hommel bestaat uit drie delen: een kop, een borststuk en een achterlijf. Het borststuk draagt drie paar poten en twee paar vleugels. Mannetjes en vrouwtjes onderscheiden zich door het aantal antenneleden en het aantal achterlijfssegmenten, 12 antenneleden en 6 achterlijfssegmenten bij vrouwtjes en 13 en 7 bij mannetjes. Tevens is de vorm van het achterlijf vaak wat breder en meer afgerond bij vrouwtjes.
     </div>
     <div id="splash-footer" style="background:#fff;padding:0.8em 1.2em 0.8em 1.2em;font-size:0.75em;color:#888;max-width:420px;margin:0 auto 0 auto;text-align:center;">
-      Gemaakt door Arnold Hoogerwerf op basis van informatie uit de Basisgids Hommels en de Zoekkaart Hommels van <a href="https://kenniscentruminsecten.nl/" target="_blank" style="color:#0074d9;text-decoration:underline;">EIS Kenniscentrum Insecten en andere ongewervelden</a> / Naturalis Biodiversity Center
+      Gemaakt door <a href="https://arnoldhoogerwerf.net" target="_blank" style="color:#0074d9;text-decoration:underline;">Arnold Hoogerwerf</a> op basis van informatie uit de <a href="https://kenniscentruminsecten.nl/publicaties/basisgids-hommels/" target="_blank" style="color:#0074d9;text-decoration:underline;">Basisgids Hommels</a> en de <a href="https://kenniscentruminsecten.nl/wp-content/uploads/2024/11/Zoekkaart_hommels.pdf" target="_blank" style="color:#0074d9;text-decoration:underline;">Zoekkaart Hommels</a> van <a href="https://kenniscentruminsecten.nl/" target="_blank" style="color:#0074d9;text-decoration:underline;">EIS Kenniscentrum Insecten en andere ongewervelden</a> / <a href="https://www.naturalis.nl" target="_blank" style="color:#0074d9;text-decoration:underline;">Naturalis Biodiversity Center</a>
     </div>
   </div>
   <div class="container" id="main-app" style="display:none; position:relative;">
@@ -574,6 +574,30 @@
         "Tweekleurige / Grote koekoekshommel (zeldzaam!)"
       ];
 
+      // Latijnse namen mapping
+      const latinNames = {
+        "Boomhommel": "Bombus hypnorum",
+        "Akkerhommel (donkere vorm)": "Bombus pascuorum",
+        "Moshommel (zeldzaam!)": "Bombus muscorum",
+        "Heidehommel (zeldzaam!)": "Bombus jonellus",
+        "Akkerhommel (lichte vorm)": "Bombus pascuorum",
+        "Steenhommel (man)": "Bombus lapidarius",
+        "Weidehommel (man)": "Bombus pratorum",
+        "Rode koekoekshommel (vrouw) (zeldzaam!)": "Bombus rupestris",
+        "Steenhommel (vrouw)": "Bombus lapidarius",
+        "Grashommel (zeldzaam!)": "Bombus ruderarius",
+        "Weidehommel (vrouw)": "Bombus pratorum",
+        "Rode koekoekshommel (man) (zeldzaam!)": "Bombus rupestris",
+        "Zandhommel (zeldzaam!)": "Bombus humilis",
+        "Gewone koekoekshommel": "Bombus vestalis",
+        "Tuinhommel": "Bombus hortorum",
+        "Veenhommel": "Bombus jonellus",
+        "Veldhommel (man)": "Bombus terrestris",
+        "Aardhommelcomplex": "Bombus terrestris/lucorum",
+        "Tweekleurige / Grote koekoekshommel (zeldzaam!)": "Bombus bohemicus/sylvestris",
+        "Boom- / Vierkleurige koekoekshommel": "Bombus quadricolor"
+      };
+
       if (node.result) {
         // Resultaatnaam, balkgrafiek en periode in een blokje (Boomhommel en andere soorten)
         let showInfoBlock = node.activeMonths && node.result;
@@ -618,8 +642,11 @@
           const rareClass = rareResults.includes(node.result) ? 'rare-result' : '';
           let descriptionBlock = node.description ? `<div style='width:100%;text-align:left;display:block;margin-top:0.7em;'><span style='font-size:1rem;font-weight:normal;color:#222;display:block;'>${node.description}</span></div>` : "";
           let infoBtn = node.infoUrl ? `<div style='margin-top:1em;margin-bottom:1em;text-align:center;'><button onclick="window.open('${node.infoUrl}','_blank')" style='font-size:1em;padding:0.9em 2.5em;border:none;border-radius:8px;background:#0074d9;color:#fff;font-weight:bold;cursor:pointer;display:inline-block;'>Meer informatie</button></div>` : "";
+          const latinName = latinNames[node.result] || "";
+          const latinNameDisplay = latinName ? `<div style='font-size:1em;color:#666;margin-bottom:0.5em;text-align:center;font-style:italic;'>(${latinName})</div>` : "";
           infoBlock.innerHTML = `<div style='background:#f7f7fa;border-radius:12px;padding:1em 1em 0.7em 1em;margin:1.2em 1em 1.2em 1em;box-shadow:0 1px 4px rgba(0,0,0,0.04);text-align:center;'>
-            <div class='${rareClass}' style='font-size:2.0em;font-weight:bold;margin-bottom:0.2em;text-align:center;'>${node.result}</div>
+            <div class='${rareClass}' style='font-size:1.7em;font-weight:bold;margin-bottom:0.2em;text-align:center;'>${node.result}</div>
+            ${latinNameDisplay}
             <div style='text-align:center;'>${barGraph}</div>
             ${period}
             ${descriptionBlock}

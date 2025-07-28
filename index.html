@@ -643,9 +643,9 @@
           let descriptionBlock = node.description ? `<div style='width:100%;text-align:left;display:block;margin-top:0.7em;'><span style='font-size:1rem;font-weight:normal;color:#222;display:block;'>${node.description}</span></div>` : "";
           let infoBtn = node.infoUrl ? `<div style='margin-top:1em;margin-bottom:1em;text-align:center;'><button onclick="window.open('${node.infoUrl}','_blank')" style='font-size:1em;padding:0.9em 2.5em;border:none;border-radius:8px;background:#0074d9;color:#fff;font-weight:bold;cursor:pointer;display:inline-block;'>Meer informatie</button></div>` : "";
           const latinName = latinNames[node.result] || "";
-          const latinNameDisplay = latinName ? `<div style='font-size:1em;color:#666;margin-bottom:0.5em;text-align:center;font-style:italic;'>(${latinName})</div>` : "";
+          const latinNameDisplay = latinName ? `<div style='font-size:1em;color:#666;margin-bottom:1em;text-align:center;font-style:italic;'>(${latinName})</div>` : "";
           infoBlock.innerHTML = `<div style='background:#f7f7fa;border-radius:12px;padding:1em 1em 0.7em 1em;margin:1.2em 1em 1.2em 1em;box-shadow:0 1px 4px rgba(0,0,0,0.04);text-align:center;'>
-            <div class='${rareClass}' style='font-size:1.7em;font-weight:bold;margin-bottom:0.2em;text-align:center;'>${node.result}</div>
+            <div class='${rareClass}' style='font-size:1.4em;font-weight:bold;margin-bottom:0.2em;text-align:center;'>${node.result}</div>
             ${latinNameDisplay}
             <div style='text-align:center;'>${barGraph}</div>
             ${period}
